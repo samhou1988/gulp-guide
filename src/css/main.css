@@ -1,0 +1,9 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 13px/1.4 Helvetica, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
