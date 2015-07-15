@@ -76,6 +76,6 @@ gulp.task('watch', function () {
 /**
  * default
  */
-gulp.task('default', ['less', 'scripts', 'watch'], function () {
+gulp.task('default', ['less', 'scripts', 'styles', 'watch'], function () {
     console.log('default task run')
 })
