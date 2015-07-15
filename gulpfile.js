@@ -4,7 +4,8 @@ var miniCss = require('gulp-minify-css')
 var rename = require('gulp-rename')
 var concat = require('gulp-concat')
 var del = require('del')
-// var imagein = require('gulp-imagein')
+var imagemin = require('gulp-imagemin')
+var pngquant = require('imagemin-pngquant')
 var less = require('gulp-less')
 // var sass = require('gulp-ruby-sass')
 
@@ -63,6 +64,15 @@ gulp.task('less', function () {
 /**
  * images
  */
+gulp.task('imagemin', function () {
+    gulp.src('src/image/*.png')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('dist/image'))
+})
 
 /**
  * watch file change
@@ -76,6 +86,6 @@ gulp.task('watch', function () {
 /**
  * default
  */
-gulp.task('default', ['less', 'del', 'scripts', 'styles', 'watch'], function () {
+gulp.task('default', ['less', 'styles', 'scripts', 'watch'], function () {
     console.log('default task run')
 })
