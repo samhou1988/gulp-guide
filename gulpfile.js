@@ -6,8 +6,10 @@ var concat = require('gulp-concat')
 var del = require('del')
 var imagemin = require('gulp-imagemin')
 var pngquant = require('imagemin-pngquant')
+var sprite = require('gulp-sprite')
 var less = require('gulp-less')
-// var sass = require('gulp-ruby-sass')
+var sass = require('gulp-ruby-sass')
+var base64 = require('gulp-base64')
 
 
 /**
@@ -43,6 +45,7 @@ gulp.task('scripts', function () {
 gulp.task('styles', function () {
     gulp.src('src/css/*.css')
         .pipe(concat('main.css'))
+        .pipe(base64())
         .pipe(miniCss())
         .pipe(rename({
             basename: 'main',
@@ -62,6 +65,17 @@ gulp.task('less', function () {
 })
 
 /**
+ * sass
+ */
+gulp.task('sass', function () {
+    return sass('src/scss/')
+        .on('error', function (err) {
+            console.error('Error!', err.message);
+        })
+        .pipe(gulp.dest('src/css'));
+})
+
+/**
  * images
  */
 gulp.task('imagemin', function () {
@@ -72,6 +86,19 @@ gulp.task('imagemin', function () {
             use: [pngquant()]
         }))
         .pipe(gulp.dest('dist/image'))
+})
+
+/**
+ * sprite
+ */
+gulp.task('sprite', function () {
+    gulp.src('src/image/icon/*.png')
+        .pipe(sprite('sprites.png', {
+            imagePath: 'dist/image',
+            cssPath: 'src/scss/',
+            preprocessor: 'scss'
+        }))
+        .pipe(gulp.dest('dist/image/'));
 })
 
 /**
