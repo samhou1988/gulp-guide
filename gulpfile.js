@@ -24,7 +24,7 @@ gulp.task('del', function () {
 /**
  * JavaScript uglify
  */
-gulp.task('scripts', ['del'], function () {
+gulp.task('scripts', function () {
     gulp.src('src/js/*.js')
         .pipe(concat('app.js'))
         .pipe(uglify())
@@ -39,7 +39,7 @@ gulp.task('scripts', ['del'], function () {
 /**
  * CSS minify
  */
-gulp.task('styles', ['del'], function () {
+gulp.task('styles', function () {
     gulp.src('src/css/*.css')
         .pipe(concat('main.css'))
         .pipe(miniCss())
@@ -76,6 +76,6 @@ gulp.task('watch', function () {
 /**
  * default
  */
-gulp.task('default', ['less', 'scripts', 'styles', 'watch'], function () {
+gulp.task('default', ['less', 'del', 'scripts', 'styles', 'watch'], function () {
     console.log('default task run')
 })
