@@ -13,7 +13,7 @@ var less = require('gulp-less')
  * delete files
  */
 gulp.task('del', function () {
-    del(['dist/js/*.js', 'dist/css/*.css'], function (err, paths) {
+    del(['dist/**/*.*'], function (err, paths) {
         if (err) {
             console.error('Deleted error!')
         }
