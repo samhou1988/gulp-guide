@@ -10,6 +10,7 @@ var sprite = require('gulp-sprite')
 var less = require('gulp-less')
 var sass = require('gulp-ruby-sass')
 var base64 = require('gulp-base64')
+var copy = require('copy')
 
 
 /**
@@ -22,6 +23,13 @@ gulp.task('del', function () {
         }
         console.log('Deleted files/folders:\n', paths.join('\n'))
     })
+})
+
+/**
+ * copy files
+ */
+gulp.task('copy', function (cb) {
+    copy('src/image/sprites.png', 'dist/image', cb)
 })
 
 /**
@@ -91,14 +99,24 @@ gulp.task('imagemin', function () {
 /**
  * sprite
  */
-gulp.task('sprite', function () {
+gulp.task('sprite:src', function () {
+    gulp.src('src/image/icon/*.png')
+        .pipe(sprite('sprites.png', {
+            imagePath: 'src/image',
+            cssPath: 'src/css/',
+            preprocessor: 'css'
+        }))
+        .pipe(gulp.dest('src/image'));
+})
+
+gulp.task('sprite:dist', function () {
     gulp.src('src/image/icon/*.png')
         .pipe(sprite('sprites.png', {
             imagePath: 'dist/image',
-            cssPath: 'src/scss/',
-            preprocessor: 'scss'
+            cssPath: 'src/css/',
+            preprocessor: 'css'
         }))
-        .pipe(gulp.dest('dist/image/'));
+        .pipe(gulp.dest('src/image'));
 })
 
 /**
@@ -108,11 +126,13 @@ gulp.task('watch', function () {
     gulp.watch('src/js/*.js', ['scripts'])
     gulp.watch('src/css/*.css', ['styles'])
     gulp.watch('src/less/*.less', ['less'])
+    gulp.watch('src/image/*.png', ['imagemin'])
+    gulp.watch('src/image/icon/*.png', ['sprite'])
 })
 
 /**
  * default
  */
-gulp.task('default', ['less', 'styles', 'scripts', 'watch'], function () {
+gulp.task('default', ['less', 'styles', 'scripts', 'imagemin', 'sprite', 'watch'], function () {
     console.log('default task run')
 })

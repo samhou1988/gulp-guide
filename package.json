@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/samhou1988/gulp-guide#readme",
   "devDependencies": {
+    "copy": "^0.1.1",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^2.3.0",
