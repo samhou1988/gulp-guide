@@ -133,6 +133,6 @@ gulp.task('watch', function () {
 /**
  * default
  */
-gulp.task('default', ['less', 'styles', 'scripts', 'imagemin', 'sprite', 'watch'], function () {
+gulp.task('default', ['less', 'sass', 'styles', 'scripts', 'imagemin', 'sprite', 'watch'], function () {
     console.log('default task run')
 })
