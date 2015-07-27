@@ -76,7 +76,7 @@ gulp.task('less', function () {
  * sass
  */
 gulp.task('sass', function () {
-    return sass('src/scss/')
+    return sass('src/sass/')
         .on('error', function (err) {
             console.error('Error!', err.message);
         })

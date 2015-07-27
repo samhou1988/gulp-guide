@@ -1,17 +1,17 @@
 .icon-music {
-  background-image: url(dist/image/sprites.png);
+  background-image: url(src/image/sprites.png);
   background-position: -5px -5px;
   width: 18px;
   height: 19px;
 }
 .icon-share {
-  background-image: url(dist/image/sprites.png);
+  background-image: url(src/image/sprites.png);
   background-position: -5px -34px;
   width: 19px;
   height: 17px;
 }
 .icon-zan {
-  background-image: url(dist/image/sprites.png);
+  background-image: url(src/image/sprites.png);
   background-position: -5px -61px;
   width: 20px;
   height: 17px;
